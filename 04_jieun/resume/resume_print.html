@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jieun Lee - Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet" />
+    <style>
+        :root {
+            --text-main: #333333;
+            --text-light: #666666;
+            --line-color: #dcdcdc;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f0f0f0; /* 배경은 회색 (프린트 시 흰색) */
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* A4 사이즈 페이지 래퍼 */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* 텍스트 크기 설정 */
+        h1.section-title {
+            font-size: 16pt;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+        
+        h2.block-title {
+            font-size: 10pt;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .content-text {
+            font-size: 8.5pt;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        .text-light {
+            color: var(--text-light);
+        }
+
+        .divider {
+            border-top: 1px solid var(--line-color);
+            margin: 20px 0;
+        }
+
+        /* 표, 그리드 정렬 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .grid-3col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .flex-row {
+            display: flex;
+            margin-bottom: 6px;
+        }
+
+        .flex-row .label {
+            width: 80px;
+            font-weight: 600;
+        }
+
+        .flex-row .value {
+            flex: 1;
+        }
+
+        .timeline-row {
+            display: flex;
+            margin-bottom: 6px;
+        }
+
+        .timeline-row .year {
+            width: 90px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .timeline-row .desc {
+            flex: 1;
+        }
+
+        /* 플로팅 프린트 버튼 */
+        .print-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background-color: #111;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+            font-family: 'Pretendard', sans-serif;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 인쇄 최적화 (PDF 저장 시) */
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                margin: 0;
+                padding: 15mm;
+                box-shadow: none;
+                width: 100%;
+                min-height: 100vh;
+                page-break-after: always;
+            }
+            .print-btn {
+                display: none !important;
+            }
+            @page {
+                size: A4;
+                margin: 0mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">PDF로 저장(인쇄)</button>
+
+    <div class="page content-text">
+        
+        <h1 class="section-title">PROFILE</h1>
+
+        <div class="grid-2col">
+            <!-- 왼쪽 정보 -->
+            <div>
+                <div class="flex-row">
+                    <div class="label">Name</div>
+                    <div class="value">이지은 / Jieun Lee</div>
+                </div>
+                <div class="flex-row">
+                    <div class="label">Phone</div>
+                    <div class="value">010-3133-1521</div>
+                </div>
+                <div class="flex-row">
+                    <div class="label">E-mail</div>
+                    <div class="value">leejieun6@naver.com</div>
+                </div>
+                <div class="flex-row">
+                    <div class="label">Address</div>
+                    <div class="value">서울특별시 잠원로8길 35</div>
+                </div>
+            </div>
+
+            <!-- 오른쪽 경력/학력 -->
+            <div>
+                <h2 class="block-title">경력 및 학력</h2>
+                <div class="timeline-row">
+                    <div class="year">2017 ~ 현재</div>
+                    <div class="desc">아성다이소 상품디자인 파트 대리</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="year">2016 ~ 2017</div>
+                    <div class="desc">You are beautiful 디자인 에이전시 그래픽 디자이너 (인턴)</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="year">2015 ~ 2017</div>
+                    <div class="desc">영국 Kingston Univ, MA Communication Design 졸업</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="year">2013 ~ 2013</div>
+                    <div class="desc">오픈스페이스 배 전시 기획자 (인턴)</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="year">2010 ~ 2014</div>
+                    <div class="desc">동아대학교 서양화과 학사 졸업</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="grid-2col">
+            <!-- 왼쪽 수상실적 및 대외경험 -->
+            <div>
+                <h2 class="block-title">수상실적 및 글로벌 경험</h2>
+                <div class="timeline-row">
+                    <div class="year">2015년 12월</div>
+                    <div class="desc">Winner for commission illustration (영국 Hampton Court Palace)</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="year">2015년 6~9월</div>
+                    <div class="desc">해외 글로벌 연수 (영국 Hampton Court Palace 주최)</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="year">2013년 7월</div>
+                    <div class="desc">독일 함부르크 미술대 교류전 및 그룹전시 (독일 교환학생)</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="year">2012년 8~12월</div>
+                    <div class="desc">동아대학교 주최 필리핀 교환학생 수료</div>
+                </div>
+            </div>
+
+            <!-- 오른쪽 보유 기술 및 자격증 -->
+            <div>
+                <h2 class="block-title">보유 자격증 및 핵심 역량</h2>
+                <div class="flex-row">
+                    <div class="label" style="width: 50px;">자격증</div>
+                    <div class="desc">컴퓨터그래픽스운용기능사<br>GTQ 1급<br>컴퓨터활용능력 2급<br>IELTS 6.0</div>
+                </div>
+                <div class="flex-row mt-2" style="margin-top: 10px;">
+                    <div class="label" style="width: 50px;">역량</div>
+                    <div class="desc">상품 기획 및 패키지 디자인 전개<br>VMD 및 매장 공간 디자인 디렉팅<br>온/오프라인 브랜드 마케팅 기획<br>SNS 홍보 콘텐츠 및 사진 촬영 디렉팅</div>
+                </div>
+                <div class="flex-row mt-2" style="margin-top: 10px;">
+                    <div class="label" style="width: 50px;">Tools</div>
+                    <div class="desc text-light">Adobe Photoshop, Illustrator, InDesign, Premiere Pro</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 하단 디자인 실적 (3단) -->
+        <h2 class="block-title">디자인 실적 (프로젝트)</h2>
+        <div class="grid-3col">
+            
+            <!-- Column 1 -->
+            <div>
+                <div style="margin-bottom: 20px;">
+                    <div class="timeline-row">
+                        <div class="year text-light">2020 ~ 2023</div>
+                    </div>
+                    <div class="desc font-bold" style="font-weight: 700; margin-bottom: 4px;">아성다이소 브랜드 패키지 리뉴얼</div>
+                    <div class="desc text-light" style="font-size: 8pt; margin-bottom: 2px;">다양한 생활용품 비주얼 디렉팅 및 전개</div>
+                    <div class="desc text-light" style="font-size: 8pt;">SNS 마케팅 사진 촬영 디렉팅 총괄</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div class="timeline-row">
+                        <div class="year text-light">2021</div>
+                    </div>
+                    <div class="desc font-bold" style="font-weight: 700; margin-bottom: 4px;">신규 생활용품 라인업 기획</div>
+                    <div class="desc text-light" style="font-size: 8pt; margin-bottom: 2px;">트렌드 리서치 및 톤앤매너 가이드라인 수립</div>
+                    <div class="desc text-light" style="font-size: 8pt;">오프라인 매장 VMD 지침서 작성</div>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div>
+                <div style="margin-bottom: 20px;">
+                    <div class="timeline-row">
+                        <div class="year text-light">2019</div>
+                    </div>
+                    <div class="desc font-bold" style="font-weight: 700; margin-bottom: 4px;">다이소 일본 가을 시즌(Fall Season) 기획</div>
+                    <div class="desc text-light" style="font-size: 8pt; margin-bottom: 2px;">일본 현지 시장 트렌드 파악 및 대응</div>
+                    <div class="desc text-light" style="font-size: 8pt; margin-bottom: 2px;">파스텔 톤 컨셉 제안 및 가이드라인 제작</div>
+                    <div class="desc text-light" style="font-size: 8pt;">디자인 마감일 단축으로 효율성 증대</div>
+                    <div class="desc text-light" style="font-size: 8pt;">일본 바이어 설득 성공 및 대량 오더 수주</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div class="timeline-row">
+                        <div class="year text-light">2018</div>
+                    </div>
+                    <div class="desc font-bold" style="font-weight: 700; margin-bottom: 4px;">시즌 프로모션 VMD 디렉팅</div>
+                    <div class="desc text-light" style="font-size: 8pt;">매장 내 이벤트 매대 시각화 기획 및 실행</div>
+                </div>
+            </div>
+
+            <!-- Column 3 -->
+            <div>
+                <div style="margin-bottom: 20px;">
+                    <div class="timeline-row">
+                        <div class="year text-light">2017</div>
+                    </div>
+                    <div class="desc font-bold" style="font-weight: 700; margin-bottom: 4px;">You are beautiful 프로젝트</div>
+                    <div class="desc text-light" style="font-size: 8pt; margin-bottom: 2px;">에이전시 내부 브랜딩 및 서포트 작업</div>
+                    <div class="desc text-light" style="font-size: 8pt;">시각 디자인 에셋 제작 및 리서치 보조</div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <div class="timeline-row">
+                        <div class="year text-light">2016</div>
+                    </div>
+                    <div class="desc font-bold" style="font-weight: 700; margin-bottom: 4px;">Kingston Univ. 졸업 프로젝트</div>
+                    <div class="desc text-light" style="font-size: 8pt;">커뮤니케이션 디자인 졸업 전시(영국) 기획 및 출품</div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <div class="timeline-row">
+                        <div class="year text-light">2013</div>
+                    </div>
+                    <div class="desc font-bold" style="font-weight: 700; margin-bottom: 4px;">오픈스페이스 배 전시 기획</div>
+                    <div class="desc text-light" style="font-size: 8pt;">신진 작가 발굴 및 복합문화공간 전시 서포트</div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- 하단 비핸스 링크 텍스트 (원본 재현) -->
+        <div style="margin-top: 40px; border-top: 1px solid var(--line-color); padding-top: 15px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 8px; height: 8px; background-color: #00e676; border-radius: 50%;"></div>
+                <div style="font-size: 8pt; font-weight: 600;">포트폴리오의 일부는 비핸스에서 확인이 가능합니다.</div>
+            </div>
+            <div style="font-size: 8pt; margin-left: 16px; margin-top: 4px; color: var(--text-light);">https://www.behance.net/leejieun6</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

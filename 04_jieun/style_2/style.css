@@ -1,0 +1,633 @@
+:root {
+    --bg-color: #FFFFFF;
+    --text-color: #111111;
+    --border-color: #111111;
+    --accent-color: #FF5722; /* Solid Orange */
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Pretendard', sans-serif;
+}
+
+[data-theme="dark"] {
+    --bg-color: #111111;
+    --text-color: #FFFFFF;
+    --border-color: #333333;
+}
+
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 16px; /* 텍스트 크기에 맞춰 축소 */
+    height: 16px;
+    margin-left: 12px;
+}
+
+.theme-toggle-btn svg {
+    position: absolute;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease;
+}
+
+/* Light mode (default): show moon, hide sun */
+.sun-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+}
+.moon-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+/* Dark mode: show sun, hide moon */
+[data-theme="dark"] .sun-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+[data-theme="dark"] .moon-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 40px;
+    z-index: 1000;
+    color: var(--text-color);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 0.85rem; /* 예시처럼 매우 작게 조절 */
+    letter-spacing: -0.02em;
+    color: var(--text-color);
+    text-transform: uppercase;
+}
+
+.nav {
+    display: flex;
+    gap: 20px; /* 글씨가 작아졌으므로 간격도 조밀하게 조절 */
+    align-items: center;
+}
+
+.nav-link {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 0.75rem; /* 예시처럼 매우 작게 조절 */
+    text-transform: uppercase;
+    position: relative;
+    color: var(--text-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section (White BG, Orange Moving Typography) */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 클릭 방해 금지 */
+    z-index: 0;
+}
+
+.hero-motion-container {
+    width: 100vw;
+    position: absolute;
+    top: 54%; /* 삭제된 요소만큼의 시각적 빈 공간을 채우기 위해 약간 아래로 이동 */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 40px;
+    z-index: 1; /* 캔버스 위로 올라오게 설정 */
+}
+
+.motion-row {
+    width: 100%;
+}
+
+.row-left {
+    text-align: center; /* 가로 중앙 정렬 */
+}
+
+.row-right {
+    text-align: center; /* 가로 중앙 정렬 */
+}
+
+.motion-text {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: clamp(5rem, 15vw, 15rem); /* 한 단어이므로 화면에 꽉 차게 조절 */
+    line-height: 0.85;
+    color: var(--accent-color);
+    letter-spacing: -0.02em;
+    display: inline-block;
+    animation: driftMotion 4s ease-in-out infinite alternate;
+}
+
+.motion-reverse {
+    animation-direction: alternate-reverse;
+}
+
+@keyframes driftMotion {
+    0% { transform: translateX(-3vw); }
+    100% { transform: translateX(3vw); }
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    z-index: 3;
+    color: var(--text-color);
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    background: var(--text-color);
+    color: var(--bg-color); /* White text on black bg */
+    padding: 0 10px;
+    display: inline-block;
+}
+
+.hero-subtitle {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.2rem;
+    background: var(--accent-color); /* Orange bg */
+    color: var(--bg-color); /* White text */
+    padding: 5px 10px;
+    display: inline-block;
+    letter-spacing: 0.05em;
+}
+
+/* Intro Banner */
+.intro-banner {
+    padding: 40px 40px 20px 40px; /* 간격 대폭 축소 */
+    border-bottom: none;
+}
+
+.intro-box {
+    border-radius: 32px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 350px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.intro-name {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.intro-role {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+.intro-desc {
+    font-size: 1.05rem;
+    opacity: 0.8;
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+.intro-stats {
+    display: flex;
+    gap: 60px;
+    margin-top: 60px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 900;
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Sections & Bento Grid */
+section {
+    padding: 40px 40px; /* 위아래 간격을 줄여 요소들을 히어로 쪽으로 바짝 끌어올림 */
+    /* border-bottom 삭제됨 */
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(280px, auto);
+    gap: 24px;
+}
+
+.bento-box {
+    border: 1px solid var(--border-color); /* 얇은 테두리로 모던함 유지 */
+    padding: 40px;
+    border-radius: 32px; /* 애플 스타일의 부드러운 라운드 코너 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--bg-color);
+    overflow: hidden;
+    position: relative;
+}
+
+.bento-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* 부드러운 그림자 효과 */
+}
+
+[data-theme="dark"] .bento-box:hover {
+    box-shadow: 0 20px 40px rgba(255,255,255,0.05); /* 다크모드용 그림자 */
+}
+
+.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.bento-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.bg-dark {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+.bento-box h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.bento-box p {
+    font-size: 1.05rem;
+    opacity: 0.9;
+}
+
+.exp-list li {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 12px;
+}
+
+.bg-dark .exp-list li {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tags span {
+    border: 1px solid currentColor;
+    padding: 8px 18px;
+    border-radius: 24px; /* 알약 형태 */
+    font-size: 0.9rem;
+    font-family: var(--font-heading);
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.small-tags span {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+/* Detailed Experience Additions */
+.detailed-exp li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.exp-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+.exp-role {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+    font-weight: 900;
+}
+.exp-desc {
+    font-size: 0.9rem !important;
+    line-height: 1.5;
+    opacity: 0.8 !important;
+}
+
+/* Education Additions */
+.edu-item {
+    margin-bottom: 16px;
+}
+.edu-item strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+}
+.edu-item span {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.4;
+    display: inline-block;
+}
+
+/* Awards & Global */
+.award-list {
+    list-style: none;
+    padding: 0;
+}
+.award-list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 8px;
+}
+[data-theme="dark"] .award-list li { 
+    border-bottom-color: rgba(255,255,255,0.1); 
+}
+.award-list li strong {
+    font-weight: normal;
+}
+.award-list li span {
+    opacity: 0.7;
+    font-size: 0.85rem;
+}
+
+/* Certifications */
+.cert-list {
+    margin-top: 16px;
+}
+.cert-list p {
+    font-size: 0.9rem !important;
+    opacity: 0.9 !important;
+    margin-bottom: 4px;
+}
+
+/* Contact Info adjustments */
+.contact-item {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+}
+
+/* Case Study Specific */
+.case-header {
+    margin-bottom: 60px;
+}
+
+.case-subtitle {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+/* case-grid는 bento-grid와 병합하여 제거됨 */
+
+.case-visual {
+    background: var(--border-color);
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px; /* 비주얼 박스도 라운드 코너 적용 */
+}
+
+.placeholder-text {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    opacity: 0.5;
+    text-transform: uppercase;
+}
+
+/* Archive Gallery */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+}
+
+.view-all {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 2px;
+}
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.archive-item {
+    aspect-ratio: 3/4;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    background: var(--bg-color);
+}
+
+.archive-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 8px 0px var(--accent-color);
+}
+
+/* Footer */
+.footer {
+    padding: 120px 40px 40px;
+    background: var(--text-color);
+    color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    margin-bottom: 60px;
+    color: var(--accent-color);
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.contact-link {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 900;
+    border-bottom: 4px solid var(--accent-color);
+}
+
+.copyright {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    opacity: 0.5;
+    font-weight: 900;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    section, .hero, .header {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .intro-banner {
+        padding: 40px 20px;
+    }
+    .intro-box {
+        padding: 40px 30px;
+    }
+    .intro-stats {
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+    .hero-bg-text {
+        font-size: 30vw;
+    }
+    .bento-grid, .case-grid, .archive-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-large {
+        grid-column: span 1;
+    }
+    .nav {
+        display: none;
+    }
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+/* Fade Up Animation (script.js) */
+.fade-up-element {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fade-up-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
